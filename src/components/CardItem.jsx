@@ -3,7 +3,7 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined, UserOutlined, AntDesig
 
 const { Meta } = Card;
 
-function CardItem() {
+function CardItem({ todo }) {
   return (
     <Card
       cover={
@@ -19,8 +19,8 @@ function CardItem() {
       ]}
     >
       <Meta
-        title="Card title"
-        description="This is the description"
+        title={todo.title}
+        description={todo.description}
       />
       <div className='avatarGroup'>
         <Avatar.Group

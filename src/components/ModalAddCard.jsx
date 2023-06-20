@@ -1,24 +1,24 @@
+/* eslint-disable react/prop-types */
 import { Modal, Form, Input } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 
 const { TextArea } = Input;
 
-function ModalAddCard() {
+function ModalAddCard({ isOpenModalAddCard, handleCloseModalAddCard, handleAddTodo }) {
   const [form] = useForm();
 
-  const handleCancel = () => {
-    // setIsModalOpen(false);
+  const onFinish = (values) => {
+    form.resetFields();
+    handleAddTodo(values);
+    handleCloseModalAddCard();
   };
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
   return (
-    <Modal title="Add Card" open={false} onOk={form.submit} onCancel={handleCancel}>
+    <Modal title="Add Card" open={isOpenModalAddCard} onOk={form.submit} onCancel={handleCloseModalAddCard}>
       <Form
         name="basic"
         form={form}
